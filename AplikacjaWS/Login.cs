@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,17 @@ namespace AplikacjaWS
     public partial class Login : Form
     {
         public string LogInfo;
+        public string ComboTextM ="";
+        public string ComboTextL;
         public Login()
         {
             if (!String.IsNullOrEmpty(Properties.Settings.Default.language))
-            {
+            {                
                 System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.language);
                 System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo(Properties.Settings.Default.language);
             }
                 InitializeComponent();
+            
         }
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -118,12 +122,18 @@ namespace AplikacjaWS
             };
             comboBox1.DisplayMember = "NativeName";
             comboBox1.ValueMember = "Name";
+            
             if (!String.IsNullOrEmpty(Properties.Settings.Default.language))
-            {
-                comboBox1.SelectedValue = Properties.Settings.Default.language;                
+            {                                   
+                comboBox1.SelectedValue = Properties.Settings.Default.language;
+                     ComboTextM = comboBox1.Text;
+                     ComboTextL = comboBox1.Text;
+
+
             }
             
         }
+       
 
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -131,6 +141,14 @@ namespace AplikacjaWS
             Properties.Settings.Default.Save();
         }
 
-
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (ComboTextM == ComboTextL)
+            {
+                
+                    Application.Restart();
+            }
+        }
     }
 }

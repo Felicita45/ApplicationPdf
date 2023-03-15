@@ -243,7 +243,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold, Underline</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>118, 291</value>
+    <value>110, 291</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 13</value>
